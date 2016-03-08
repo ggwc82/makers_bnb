@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script> $(document).ready(function(){
+    $('#filter_from_id').change(function(){
+      var toDate = $('#filter_from_id').val();
+      $('#filter_to_id').attr('min', toDate);
+    });
+  }); </script>
+</head>
+<body>
+
+<% if current_user == nil %>
+  <form method='get' action='/sessions/new'>
+    <input type='submit' value='Sign in'>
+  </form><br >
+
+  <form method='get' action='/users/new'>
+    <input type='submit' value='Sign up'>
+  </form>
+
+<% else %>
+  <form method='get' action='/spaces/new'>
+    <input type='submit' value='Add space'>
+  </form>
+<% end %>
+
+<div class = "availability">
+
+<h1> Check Availability</h1>
+
+<form action='/spaces/filter' method='POST'>
+  <label for='filter_from'>
+    from:
+    <input type='date' id='filter_from_id' name='filter_from' required>
+  </label>
+  <label for='filter_to'>
+    to:
+    <input type='date' id='filter_to_id' min='2016-01-01' name='filter_to' required>
+  </label>
+  <input type='submit' value='Filter Spaces'>
+</label>
+</form>
+</div>
+
+
+<ul class="list" id='spaces'>
+
+  <% @spaces.each do |space| %>
+    <li>
+      Name: <%= space.name %>
+      Location: <%= space.location %>
+      Description: <%= space.description %>
+      Price Per Night: <%= space.price_per_night %>
+      Available From: <%= space.available_from %>
+      Available To: <%= space.available_to %>
+    </li>
+    <br>
+
+  <% end %>
+</ul>
+
+</body>
+</html>
+
