@@ -1,0 +1,10 @@
+<a href='#/'>Homepage</a>
+<h2>Add A New Space</h2>
+<form novalidate class='create-space-form'>
+  <label>Name: </label><input type='text' ng-model='space.name' />
+  <label>Price: $</label><input type='integer' ng-model='space.price' />
+  <label>Location: </label><input type='text' ng-model='space.location' />
+  <label>Size: </label><input type='float' ng-model='space.size' />
+  <label>Property Type: </label><input type='text' ng-model='space.property_type' />
+  <input type='submit' ng-click='spacescontroller.create(space)' value='Create space' />
+</form>
